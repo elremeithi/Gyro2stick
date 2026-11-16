@@ -134,13 +134,13 @@ $g.FillRectangle((New-Object System.Drawing.Drawing2D.LinearGradientBrush $rect,
 # darken the lower part so the title reads well
 $shade = New-Object System.Drawing.Drawing2D.LinearGradientBrush (New-Object System.Drawing.RectangleF 0, 420, $W, 480), (C 0 ([System.Drawing.Color]::Black)), (C 150 ([System.Drawing.Color]::Black)), 90
 $g.FillRectangle($shade, 0, 421, $W, 479)
-DrawOrbits $g 300 330 560 7 22 2
-DrawEmblem $g 70 120 460 $false 1
+DrawOrbits $g 300 320 560 7 22 2
+DrawEmblem $g 70 110 460 $false 1
 $f1 = PickFont 92 $titleFonts
 $f2 = PickFont 30 'Segoe UI Semibold', 'Segoe UI' 'Regular'
-CenterText $g 'GYRO2' $f1 $white 300 615
-CenterText $g 'STICK' (PickFont 120 $titleFonts) (New-Object System.Drawing.SolidBrush $cyan) 300 700
-CenterText $g ('GYRO AIM  ' + [char]0x00B7 + '  XBOX 360 PAD') $f2 (New-Object System.Drawing.SolidBrush (C 220 ([System.Drawing.Color]::White))) 300 840
+CenterText $g 'GYRO2' $f1 $white 300 495
+CenterText $g 'STICK' (PickFont 120 $titleFonts) (New-Object System.Drawing.SolidBrush $cyan) 300 580
+CenterText $g ('GYRO AIM  ' + [char]0x00B7 + '  XBOX 360 PAD') $f2 (New-Object System.Drawing.SolidBrush (C 220 ([System.Drawing.Color]::White))) 300 725
 Save $bmp $g 'cover.png'
 
 # ---- Background: 1920x1080 (16:9), dark so Playnite's text stays readable; art on the right ----
