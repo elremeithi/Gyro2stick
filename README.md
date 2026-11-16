@@ -116,3 +116,9 @@ Settings: `%APPDATA%\Gyro2stick\settings.json`.
 ```
 dotnet publish -c Release -o publish
 ```
+
+The driver installers are embedded in the exe but aren't in this repository. Before building, download them and put them here:
+
+- `Drivers\ViGEmBus_Setup.exe`: [ViGEmBus releases](https://github.com/nefarius/ViGEmBus/releases)
+- `Drivers\HidHide_Setup.exe`: [HidHide releases](https://github.com/nefarius/HidHide/releases)
+- `Drivers\PawnIO\PawnIO_setup.exe`: [PawnIO releases](https://github.com/namazso/PawnIO.Setup/releases) (the `.bin` modules are already included)
