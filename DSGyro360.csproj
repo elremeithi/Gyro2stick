@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <!-- Windows 10 SDK target: needed for the motion sensor API (handheld built-in gyro). -->
+    <TargetFramework>net8.0-windows10.0.19041.0</TargetFramework>
+    <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+    <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <AssemblyName>DSGyro360</AssemblyName>
+    <Product>DS Gyro 360</Product>
+    <Version>1.0.0</Version>
+
+    <!-- One self-contained exe: .NET runtime, libraries and driver installers all embedded. -->
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>true</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Drivers\ViGEmBus_Setup.exe" LogicalName="ViGEmBus_Setup.exe" />
+    <EmbeddedResource Include="Drivers\HidHide_Setup.exe" LogicalName="HidHide_Setup.exe" />
+    <EmbeddedResource Include="app.ico" LogicalName="app.ico" />
+    <!-- PawnIO (signed driver + signed modules, LGPL-2.1) for power limits and fan control. -->
+    <EmbeddedResource Include="Drivers\PawnIO\PawnIO_setup.exe" LogicalName="PawnIO_setup.exe" />
+    <EmbeddedResource Include="Drivers\PawnIO\RyzenSMU.bin" LogicalName="RyzenSMU.bin" />
+    <EmbeddedResource Include="Drivers\PawnIO\LpcIO.bin" LogicalName="LpcIO.bin" />
+    <!-- GPD Win 4 motion-sensor (gyro) driver from GPD's driver pack, installed if the sensor is missing. -->
+    <EmbeddedResource Include="Drivers\GpdSensor\**\*" LogicalName="GpdSensor/$([System.String]::Copy('%(RecursiveDir)').Replace('\','/'))%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HidSharp" Version="2.6.4" />
+    <PackageReference Include="Nefarius.Drivers.HidHide" Version="3.4.0" />
+    <PackageReference Include="Nefarius.ViGEm.Client" Version="1.21.256" />
+  </ItemGroup>
+
+</Project>
