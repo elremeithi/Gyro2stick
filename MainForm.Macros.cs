@@ -1,4 +1,4 @@
-﻿namespace DSGyro360;
+﻿namespace Gyro2stick;
 
 /// <summary>The Macros page: macro list, step palette, flow-chart view and the selected block's properties.</summary>
 public sealed partial class MainForm

@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace DSGyro360;
+namespace Gyro2stick;
 
 public enum GyroActivation
 {
@@ -153,8 +153,11 @@ public sealed class AppSettings
     public List<string> DisabledAudioIds { get; set; } = new();
 
     static readonly string Dir = Path.Combine(
-        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DSGyro360");
+        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Gyro2stick");
     static readonly string FilePath = Path.Combine(Dir, "settings.json");
+    /// <summary>Where settings lived before the app was renamed from DS Gyro 360.</summary>
+    static readonly string LegacyFilePath = Path.Combine(
+        Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DSGyro360", "settings.json");
     static readonly JsonSerializerOptions JsonOpts = new() { WriteIndented = true };
     readonly object _saveLock = new();
 
@@ -229,6 +232,11 @@ public sealed class AppSettings
     {
         try
         {
+            if (!File.Exists(FilePath) && File.Exists(LegacyFilePath))
+            {
+                Directory.CreateDirectory(Dir);
+                File.Copy(LegacyFilePath, FilePath);
+            }
             if (File.Exists(FilePath))
             {
                 var s = JsonSerializer.Deserialize<AppSettings>(File.ReadAllText(FilePath), JsonOpts) ?? new();

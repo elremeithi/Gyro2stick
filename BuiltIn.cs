@@ -3,7 +3,7 @@ using Microsoft.Win32;
 using Nefarius.Utilities.DeviceManagement.PnP;
 using Windows.Devices.Sensors;
 
-namespace DSGyro360;
+namespace Gyro2stick;
 
 /// <summary>Whether the handheld's own controller is taken over (Auto = only on known handhelds such as the GPD Win 4).</summary>
 public enum BuiltInMode { Auto, On, Off }
@@ -117,7 +117,7 @@ public static class SensorDriverSetup
     /// <summary>Extracts the driver and installs it. Null on success, else the problem.</summary>
     public static string? Install()
     {
-        var dir = Path.Combine(Path.GetTempPath(), "DSGyro360_GpdSensor");
+        var dir = Path.Combine(Path.GetTempPath(), "Gyro2stick_GpdSensor");
         try
         {
             if (Directory.Exists(dir)) Directory.Delete(dir, true);

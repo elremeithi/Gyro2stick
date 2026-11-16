@@ -2,7 +2,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text.Json;
 
-namespace DSGyro360;
+namespace Gyro2stick;
 
 /// <summary>A named set of options, optionally tied to games (exe names) that switch to it automatically.</summary>
 public sealed class GameProfile
@@ -24,7 +24,7 @@ static class ProfileStore
 {
     sealed class ExportFile
     {
-        public string App { get; set; } = "DS Gyro 360";
+        public string App { get; set; } = "Gyro2stick";
         public int Version { get; set; } = 1;
         public DateTime Exported { get; set; }
         public string ActiveProfile { get; set; } = GameProfile.DefaultName;
@@ -80,7 +80,7 @@ static class ProfileStore
     {
         ExportFile? file;
         try { file = JsonSerializer.Deserialize<ExportFile>(File.ReadAllText(path), JsonOpts); }
-        catch (Exception ex) { throw new InvalidDataException("This isn't a DS Gyro 360 profile file (" + ex.Message + ")."); }
+        catch (Exception ex) { throw new InvalidDataException("This isn't a Gyro2stick profile file (" + ex.Message + ")."); }
         if (file?.Profiles == null || file.Profiles.Count == 0)
             throw new InvalidDataException("The file has no profiles in it.");
         foreach (var p in file.Profiles)
@@ -369,8 +369,8 @@ sealed class ProfilesDialog : Form
         using var dlg = new SaveFileDialog
         {
             Title = "Export profiles",
-            Filter = "DS Gyro 360 profiles (*.json)|*.json",
-            FileName = $"DSGyro360-profiles-{DateTime.Now:yyyy-MM-dd}.json",
+            Filter = "Gyro2stick profiles (*.json)|*.json",
+            FileName = $"Gyro2stick-profiles-{DateTime.Now:yyyy-MM-dd}.json",
         };
         if (dlg.ShowDialog(this) != DialogResult.OK) return;
         try
@@ -387,7 +387,7 @@ sealed class ProfilesDialog : Form
 
     void Import()
     {
-        using var dlg = new OpenFileDialog { Title = "Import profiles", Filter = "DS Gyro 360 profiles (*.json)|*.json|All files (*.*)|*.*" };
+        using var dlg = new OpenFileDialog { Title = "Import profiles", Filter = "Gyro2stick profiles (*.json)|*.json|All files (*.*)|*.*" };
         if (dlg.ShowDialog(this) != DialogResult.OK) return;
         List<GameProfile> incoming;
         string active;

@@ -1,4 +1,4 @@
-﻿namespace DSGyro360;
+﻿namespace Gyro2stick;
 
 /// <summary>The Remap page: Off, or a preset that plays a keyboard-and-mouse game with the controller.</summary>
 public sealed partial class MainForm

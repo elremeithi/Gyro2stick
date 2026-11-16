@@ -2,7 +2,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 
-namespace DSGyro360;
+namespace Gyro2stick;
 
 public enum PerfProfile { Off, Fps30, Fps45, Fps60 }
 public enum FanMode { Auto, Curve, Fixed }
@@ -417,7 +417,7 @@ static class Rtss
 
 /// <summary>
 /// RivaTuner can't be bundled, but for offline PCs its installer (RTSSSetup*.exe, or the zip from Guru3D that
-/// contains it) can be copied next to DSGyro360.exe and run from the app.
+/// contains it) can be copied next to Gyro2stick.exe and run from the app.
 /// </summary>
 static class RtssSetup
 {
@@ -453,7 +453,7 @@ static class RtssSetup
             string setup = path;
             if (path.EndsWith(".zip", StringComparison.OrdinalIgnoreCase))
             {
-                tempDir = Path.Combine(Path.GetTempPath(), "DSGyro360_RTSS");
+                tempDir = Path.Combine(Path.GetTempPath(), "Gyro2stick_RTSS");
                 if (Directory.Exists(tempDir)) Directory.Delete(tempDir, true);
                 System.IO.Compression.ZipFile.ExtractToDirectory(path, tempDir);
                 setup = Directory.EnumerateFiles(tempDir, "*.exe", SearchOption.AllDirectories)

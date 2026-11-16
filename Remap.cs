@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace DSGyro360;
+namespace Gyro2stick;
 
 /// <summary>
 /// One controller button's job in a remap preset. <see cref="Output"/> is a key combination ("Space", "Ctrl+S"),

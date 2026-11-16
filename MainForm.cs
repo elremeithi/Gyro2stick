@@ -1,6 +1,6 @@
 ﻿using System.Drawing.Drawing2D;
 
-namespace DSGyro360;
+namespace Gyro2stick;
 
 public sealed partial class MainForm : Form
 {
@@ -56,7 +56,7 @@ public sealed partial class MainForm : Form
         _perf = performance;
         _allowShow = !startHidden;
 
-        Text = "DS Gyro 360";
+        Text = "Gyro2stick";
         Icon = AppIcon.Create();
         Font = new Font("Segoe UI", 9f * FontScale);
         FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -160,7 +160,7 @@ public sealed partial class MainForm : Form
         if (_dirty && manual)
         {
             var answer = MessageBox.Show(this, "Apply your unapplied changes to the current profile before switching?",
-                "DS Gyro 360", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                "Gyro2stick", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
             if (answer == DialogResult.Cancel)
             {
                 SyncProfileUi();
@@ -191,7 +191,7 @@ public sealed partial class MainForm : Form
         if (ProfileStore.Find(_settings, want) == null) want = GameProfile.DefaultName;
         if (string.Equals(want, _settings.ActiveProfile, StringComparison.OrdinalIgnoreCase)) return;
         ActivateProfile(want, manual: false);
-        _tray.ShowBalloonTip(1500, "DS Gyro 360", "Profile: " + want + (game != null ? $" ({exe})" : ""), ToolTipIcon.None);
+        _tray.ShowBalloonTip(1500, "Gyro2stick", "Profile: " + want + (game != null ? $" ({exe})" : ""), ToolTipIcon.None);
     }
 
     bool _profilesDialogOpen;
@@ -561,7 +561,7 @@ public sealed partial class MainForm : Form
         recal.Click += (_, _) =>
         {
             _manager.RecalibrateAll();
-            _tray.ShowBalloonTip(2000, "DS Gyro 360", "Calibrating gyro - put the controllers down and keep them still for 1 second.", ToolTipIcon.Info);
+            _tray.ShowBalloonTip(2000, "Gyro2stick", "Calibrating gyro - put the controllers down and keep them still for 1 second.", ToolTipIcon.Info);
         };
         grid.Controls.Add(recal, 2, 6);
 
@@ -620,7 +620,7 @@ public sealed partial class MainForm : Form
         {
             if (!_settings.Enabled)
             {
-                MessageBox.Show(this, "Turn the app ON first.", "DS Gyro 360", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(this, "Turn the app ON first.", "Gyro2stick", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             var ok = MessageBox.Show(this,
@@ -1128,7 +1128,7 @@ public sealed partial class MainForm : Form
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
         };
         new ToolTip().SetToolTip(_installRtss,
-            "Runs a RivaTuner installer (RTSSSetup….exe or its .zip) copied next to DSGyro360.exe - works offline.");
+            "Runs a RivaTuner installer (RTSSSetup….exe or its .zip) copied next to Gyro2stick.exe - works offline.");
         installRow.Controls.Add(_installRtss);
         grid.Controls.Add(installRow, 0, 9);
         grid.SetColumnSpan(installRow, 3);
@@ -1302,7 +1302,7 @@ public sealed partial class MainForm : Form
         DarkTheme.Apply(menu);
         _tray.ContextMenuStrip = menu;
         _tray.Icon = _settings.Enabled ? _trayOn : _trayOff;
-        _tray.Text = "DS Gyro 360";
+        _tray.Text = "Gyro2stick";
         _tray.Visible = true;
         // Left click toggles ON/OFF (the icon turns grey/colored); double click opens the window.
         // The toggle waits out the double-click time so a double click doesn't switch OFF and back ON.
@@ -1336,7 +1336,7 @@ public sealed partial class MainForm : Form
         bool autostartChanged = _pending.StartWithWindows != _settings.StartWithWindows;
         _settings.CopyOptionsFrom(_pending);
         if (autostartChanged && Autostart.Set(_settings.StartWithWindows) is { } error)
-            MessageBox.Show(this, "Couldn't set up Start with Windows:\n\n" + error, "DS Gyro 360",
+            MessageBox.Show(this, "Couldn't set up Start with Windows:\n\n" + error, "Gyro2stick",
                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
         SaveActiveProfile();
         _settings.Save();
@@ -1402,7 +1402,7 @@ public sealed partial class MainForm : Form
         }
         _list.EndUpdate();
         if (_page == Page.Performance && Visible) RefreshPerformance();
-        _tray.Text =$"DS Gyro 360 - {(_settings.Enabled ? "ON" : "OFF")}, {pads.Count} controller(s)";
+        _tray.Text =$"Gyro2stick - {(_settings.Enabled ? "ON" : "OFF")}, {pads.Count} controller(s)";
     }
 
     void ShowFromTray()
@@ -1445,7 +1445,7 @@ public sealed partial class MainForm : Form
         }
         if (_dirty)
         {
-            var answer = MessageBox.Show(this, "Apply your unapplied changes before exiting?", "DS Gyro 360",
+            var answer = MessageBox.Show(this, "Apply your unapplied changes before exiting?", "Gyro2stick",
                 MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
             if (answer == DialogResult.Cancel)
             {

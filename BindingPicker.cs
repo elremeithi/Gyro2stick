@@ -1,4 +1,4 @@
-namespace DSGyro360;
+namespace Gyro2stick;
 
 /// <summary>
 /// Steam-style binding picker: a keyboard, a mouse and an Xbox gamepad drawn as buttons. Click what the shortcut

@@ -4,7 +4,7 @@ using Nefarius.ViGEm.Client;
 using Nefarius.ViGEm.Client.Targets;
 using Nefarius.ViGEm.Client.Targets.Xbox360;
 
-namespace DSGyro360;
+namespace Gyro2stick;
 
 public enum PadKind { DualShock4, DualSense, Handheld }
 

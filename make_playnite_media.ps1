@@ -1,4 +1,4 @@
-﻿# Generates Playnite media for DS Gyro 360 in .\playnite: icon, cover (2:3), background (16:9) and a logo.
+﻿# Generates Playnite media for Gyro2stick in .\playnite: icon, cover (2:3), background (16:9) and a logo.
 param([string]$OutDir = (Join-Path $PSScriptRoot 'playnite'))
 Add-Type -AssemblyName System.Drawing
 $ErrorActionPreference = 'Stop'
@@ -138,8 +138,8 @@ DrawOrbits $g 300 330 560 7 22 2
 DrawEmblem $g 70 120 460 $false 1
 $f1 = PickFont 92 $titleFonts
 $f2 = PickFont 30 'Segoe UI Semibold', 'Segoe UI' 'Regular'
-CenterText $g 'DS GYRO' $f1 $white 300 615
-CenterText $g '360' (PickFont 120 $titleFonts) (New-Object System.Drawing.SolidBrush $cyan) 300 700
+CenterText $g 'GYRO2' $f1 $white 300 615
+CenterText $g 'STICK' (PickFont 120 $titleFonts) (New-Object System.Drawing.SolidBrush $cyan) 300 700
 CenterText $g ('GYRO AIM  ' + [char]0x00B7 + '  XBOX 360 PAD') $f2 (New-Object System.Drawing.SolidBrush (C 220 ([System.Drawing.Color]::White))) 300 840
 Save $bmp $g 'cover.png'
 
@@ -165,12 +165,12 @@ Save $bmp $g 'background.jpg' 'Jpeg'
 $fl = PickFont 150 $titleFonts
 $gf = [System.Drawing.StringFormat]::GenericTypographic
 $measure = [System.Drawing.Graphics]::FromImage((New-Object System.Drawing.Bitmap 1, 1))
-$W = [int](320 + $measure.MeasureString('DS GYRO 360', $fl, 10000, $gf).Width + 30); $H = 360
+$W = [int](320 + $measure.MeasureString('GYRO2STICK', $fl, 10000, $gf).Width + 30); $H = 360
 $bmp, $g = NewCanvas $W $H
 DrawEmblem $g 10 30 300 $false 0.6
 $fl = PickFont 150 $titleFonts
-$g.DrawString('DS GYRO', $fl, $white, 320, 40, [System.Drawing.StringFormat]::GenericTypographic)
-$gyroW = $g.MeasureString('DS GYRO', $fl, 10000, [System.Drawing.StringFormat]::GenericTypographic).Width + 0.28 * $fl.Size # typographic measuring drops trailing spaces
-$g.DrawString('360', $fl, (New-Object System.Drawing.SolidBrush $cyan), 320 + $gyroW, 40, [System.Drawing.StringFormat]::GenericTypographic)
+$g.DrawString('GYRO2', $fl, $white, 320, 40, [System.Drawing.StringFormat]::GenericTypographic)
+$gyroW = $g.MeasureString('GYRO2', $fl, 10000, [System.Drawing.StringFormat]::GenericTypographic).Width
+$g.DrawString('STICK', $fl, (New-Object System.Drawing.SolidBrush $cyan), 320 + $gyroW, 40, [System.Drawing.StringFormat]::GenericTypographic)
 $g.DrawString('GYRO AIM FOR EVERY GAME', (PickFont 44 'Segoe UI Semibold', 'Segoe UI' 'Regular'), (New-Object System.Drawing.SolidBrush (C 230 ([System.Drawing.Color]::White))), 328, 232, [System.Drawing.StringFormat]::GenericTypographic)
 Save $bmp $g 'logo.png'

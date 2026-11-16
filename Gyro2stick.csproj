@@ -11,8 +11,8 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <ApplicationIcon>app.ico</ApplicationIcon>
     <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
-    <AssemblyName>DSGyro360</AssemblyName>
-    <Product>DS Gyro 360</Product>
+    <AssemblyName>Gyro2stick</AssemblyName>
+    <Product>Gyro2stick</Product>
     <Version>1.0.0</Version>
 
     <!-- One self-contained exe: .NET runtime, libraries and driver installers all embedded. -->

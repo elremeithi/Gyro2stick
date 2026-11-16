@@ -1,6 +1,6 @@
 using System.Drawing.Drawing2D;
 
-namespace DSGyro360;
+namespace Gyro2stick;
 
 /// <summary>
 /// Flow-chart view of one macro: the trigger at the top, one block per step joined by arrows, and an end block

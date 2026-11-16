@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace DSGyro360;
+namespace Gyro2stick;
 
 public enum CaptureTool
 {

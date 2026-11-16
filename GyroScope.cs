@@ -1,6 +1,6 @@
 using System.Drawing.Drawing2D;
 
-namespace DSGyro360;
+namespace Gyro2stick;
 
 /// <summary>
 /// Live square view of the right stick sent to the game (physical stick + gyro), with a short trail,

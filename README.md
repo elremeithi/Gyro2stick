@@ -1,10 +1,10 @@
-# DS Gyro 360
+# Gyro2stick
 
 Makes DualSense / DualSense Edge / DualShock 4 controllers (USB or Bluetooth) show up as
 Xbox 360 controllers, with the gyro added to the right stick.
 
 ## Use
-Copy `publish\DSGyro360.exe` to any 64-bit Windows 10/11 PC and run it (it asks for admin).
+Copy `publish\Gyro2stick.exe` to any 64-bit Windows 10/11 PC and run it (it asks for admin).
 No .NET install and no internet needed. On first run it offers to install the bundled drivers:
 - **ViGEmBus 1.22.0** (required): creates the virtual Xbox 360 pads.
 - **HidHide 1.5.230** (recommended): hides the real pad from games so they don't see double input. Restart Windows after installing it.
@@ -19,7 +19,7 @@ No .NET install and no internet needed. On first run it offers to install the bu
 - **Xbox slot**: the XInput player number (1-4) each controller got.
 - Rumble passthrough, stick deadzone, start minimized, close to tray.
 - **Shortcuts**: PS + a button presses a key combination, a mouse button or a gamepad button, or opens a program (the game doesn't see the combo). Click the binding to pick it Steam-style from a keyboard, mouse or gamepad drawn on screen. Mouse and gamepad buttons stay pressed while you hold the combo button. Ready-made actions include Alt+Tab, Alt+F4, Game Bar and NVIDIA screenshot / record, and Alt+X / S / W / Q.
-- **Start with Windows**: tick it and click Apply. On any PC this creates a logon task named `DSGyro360` that starts the app in the tray with admin rights and no UAC prompt. The app re-points the task to wherever the exe is each time it starts, so moving or updating the exe keeps working. If the task can't be created, a message says why.
+- **Start with Windows**: tick it and click Apply. On any PC this creates a logon task named `Gyro2stick` that starts the app in the tray with admin rights and no UAC prompt. The app re-points the task to wherever the exe is each time it starts, so moving or updating the exe keeps working. If the task can't be created, a message says why.
 
 ## Macros (button combos, like reWASD)
 The **Macros** tab binds a controller button combo (1–3 buttons, e.g. L1 + Square) to a sequence of steps. **+ New macro…** offers ready-made examples to start from: turbo (rapid fire), press a button twice, toggle auto-run, toggle hold, a combo move, a keyboard shortcut, or a blank macro. Under the chart, a sentence says what the selected macro does. You edit it as a flow chart:
@@ -106,11 +106,11 @@ Quick profiles, also in the tray menu under **Performance**. They apply instantl
 | 60 FPS | 28 W | 60 | performance |
 
 - **Power limit**: sets the processor's sustained and boost limits through its power controller (SMU), the same way RyzenAdj does. It works on Ryzen 6000 mobile chips and is re-applied every 10 s, because firmware can reset it.
-- **Frame cap**: uses RivaTuner Statistics Server's global limit, and the app starts RTSS if needed. RTSS can't be bundled. On an offline PC, copy its installer (`RTSSSetup….exe`, or the `.zip` from Guru3D) next to `DSGyro360.exe`. The first-run setup then offers to install it, or use *Install RivaTuner…* on the Performance page. The cap is removed when you pick Off or exit the app. Only a cap set by this app is ever removed.
+- **Frame cap**: uses RivaTuner Statistics Server's global limit, and the app starts RTSS if needed. RTSS can't be bundled. On an offline PC, copy its installer (`RTSSSetup….exe`, or the `.zip` from Guru3D) next to `Gyro2stick.exe`. The first-run setup then offers to install it, or use *Install RivaTuner…* on the Performance page. The cap is removed when you pick Off or exit the app. Only a cap set by this app is ever removed.
 - **Fan**: *Curve* follows the CPU temperature, using the curve of the selected profile. *Automatic* hands control back to GPD's firmware. *Fixed* holds a set speed. Above 95 °C the fan always runs at full speed, and it returns to automatic when the app exits.
 - **Driver**: this page needs **PawnIO**, a signed hardware-access driver from pawnio.eu. It replaces WinRing0, which Windows Defender now blocks. It's bundled with the app: click *Install PawnIO driver…* on the page.
 
-Settings: `%APPDATA%\DSGyro360\settings.json`.
+Settings: `%APPDATA%\Gyro2stick\settings.json`.
 
 ## Build
 ```

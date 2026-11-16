@@ -1,16 +1,16 @@
 using Nefarius.ViGEm.Client;
 
-namespace DSGyro360;
+namespace Gyro2stick;
 
 static class Program
 {
     [STAThread]
     static void Main(string[] args)
     {
-        using var mutex = new Mutex(true, "DSGyro360_SingleInstance", out bool firstInstance);
+        using var mutex = new Mutex(true, "Gyro2stick_SingleInstance", out bool firstInstance);
         if (!firstInstance)
         {
-            MessageBox.Show("DS Gyro 360 is already running (check the system tray).", "DS Gyro 360",
+            MessageBox.Show("Gyro2stick is already running (check the system tray).", "Gyro2stick",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
             return;
         }

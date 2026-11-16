@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-namespace DSGyro360;
+namespace Gyro2stick;
 
 // =====================================================================================================
 // Macros (modelled on reWASD's combos): a controller button combination + an activator starts a sequence of

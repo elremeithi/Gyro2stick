@@ -3,7 +3,7 @@ using Nefarius.Drivers.HidHide;
 using Nefarius.Utilities.DeviceManagement.PnP;
 using Nefarius.ViGEm.Client;
 
-namespace DSGyro360;
+namespace Gyro2stick;
 
 /// <summary>
 /// Finds DualShock 4 / DualSense pads, runs a <see cref="DsController"/> per pad and keeps

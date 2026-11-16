@@ -4,7 +4,7 @@ using System.Security;
 using Nefarius.Drivers.HidHide;
 using Nefarius.ViGEm.Client;
 
-namespace DSGyro360;
+namespace Gyro2stick;
 
 /// <summary>Installs the bundled ViGEmBus / HidHide drivers when they are missing.</summary>
 static class DriverSetup
@@ -51,7 +51,7 @@ static class DriverSetup
             "The following drivers are not installed:\n\n" + string.Join("\n", missing) +
             "\n\nNo internet is needed. Install them now?\n" +
             "(ViGEmBus, HidHide and RivaTuner open their own setup windows; PawnIO and the sensor driver install silently.)",
-            "DS Gyro 360 - Driver setup", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            "Gyro2stick - Driver setup", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
         bool installedHidHide = false;
         if (answer == DialogResult.Yes)
@@ -64,14 +64,14 @@ static class DriverSetup
             }
             if (!pawnIo && PawnIoSetup.Install() is { } error)
                 MessageBox.Show("PawnIO could not be installed:\n" + error +
-                                "\n\nYou can retry from the Performance page.", "DS Gyro 360",
+                                "\n\nYou can retry from the Performance page.", "Gyro2stick",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
             if (!sensor && SensorDriverSetup.Install() is { } sensorError)
-                MessageBox.Show("The GPD motion sensor driver could not be installed:\n" + sensorError, "DS Gyro 360",
+                MessageBox.Show("The GPD motion sensor driver could not be installed:\n" + sensorError, "Gyro2stick",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
             if (rtssSetup != null && RtssSetup.Install(rtssSetup) is { } rtssError)
                 MessageBox.Show("RivaTuner could not be installed:\n" + rtssError +
-                                "\n\nYou can retry from the Performance page.", "DS Gyro 360",
+                                "\n\nYou can retry from the Performance page.", "Gyro2stick",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
@@ -80,7 +80,7 @@ static class DriverSetup
             MessageBox.Show(
                 "ViGEmBus is required to create virtual Xbox 360 controllers.\n" +
                 "If you just installed it, please restart Windows and run the app again.",
-                "DS Gyro 360", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                "Gyro2stick", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return false;
         }
 
@@ -89,7 +89,7 @@ static class DriverSetup
             MessageBox.Show(
                 "HidHide was installed. A Windows restart is needed before controllers can be hidden from games.\n" +
                 "The app will still work now, but games may see both controllers until you restart.",
-                "DS Gyro 360", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                "Gyro2stick", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         return true;
     }
@@ -98,7 +98,7 @@ static class DriverSetup
     {
         try
         {
-            var dir = Path.Combine(Path.GetTempPath(), "DSGyro360");
+            var dir = Path.Combine(Path.GetTempPath(), "Gyro2stick");
             Directory.CreateDirectory(dir);
             var file = Path.Combine(dir, resourceName);
             using (var res = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName)
@@ -112,7 +112,7 @@ static class DriverSetup
         }
         catch (Exception ex)
         {
-            MessageBox.Show("Could not run " + resourceName + ":\n" + ex.Message, "DS Gyro 360",
+            MessageBox.Show("Could not run " + resourceName + ":\n" + ex.Message, "Gyro2stick",
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
@@ -124,11 +124,14 @@ static class DriverSetup
 /// </summary>
 static class Autostart
 {
-    const string TaskName = "DSGyro360";
+    const string TaskName = "Gyro2stick";
+    /// <summary>The task name used before the app was renamed from DS Gyro 360.</summary>
+    const string LegacyTaskName = "DSGyro360";
 
     /// <summary>Creates (or removes) the logon task. Returns null on success, else what went wrong.</summary>
     public static string? Set(bool enable)
     {
+        RunSchtasks($"/Delete /F /TN {LegacyTaskName}");
         if (!enable)
         {
             RunSchtasks($"/Delete /F /TN {TaskName}");
@@ -164,7 +167,7 @@ static class Autostart
               </Actions>
             </Task>
             """;
-        var tmp = Path.Combine(Path.GetTempPath(), "DSGyro360_task.xml");
+        var tmp = Path.Combine(Path.GetTempPath(), "Gyro2stick_task.xml");
         try
         {
             File.WriteAllText(tmp, xml, System.Text.Encoding.Unicode);

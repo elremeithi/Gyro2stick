@@ -1,6 +1,6 @@
 using System.Diagnostics;
 
-namespace DSGyro360;
+namespace Gyro2stick;
 
 /// <summary>
 /// Finds which built-in gyro axes turn and tilt the aim: the user turns the device left, then tilts it to look up,

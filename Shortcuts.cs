@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace DSGyro360;
+namespace Gyro2stick;
 
 public enum ShortcutKind
 {

@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-namespace DSGyro360;
+namespace Gyro2stick;
 
 /// <summary>
 /// Material Design 3 dark theme for the WinForms window: Material colour roles, rounded cards for the sections,
